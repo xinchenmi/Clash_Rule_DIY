@@ -1,17 +1,3 @@
-mixed-port: 7890
-mode: rule
-allow-lan: true
-unified-delay: true
-tcp-concurrent: true
-find-process-mode: strict
-log-level: info
-ipv6: true
-#关掉后可能在部分手机上出现dns泄露，volte不可用等问题，目前IPv6可以正常使用，不建议关闭
-external-controller: 0.0.0.0:9090
-external-ui: WebUI
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-
-
 geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
@@ -24,57 +10,6 @@ geo-update-interval: 48
 profile:
   store-selected: true
   store-fake-ip: true
-
-#嗅探器关掉本机可能出现上网异常，连接本机热点的设备可能无法上网
-sniffer:
-  enable: true
-  parse-pure-ip: true
-  force-dns-mapping: true
-  override-destination: false
-  sniff:
-    HTTP:
-      ports:
-        - 80
-        - 443
-      override-destination: false
-    TLS:
-      ports:
-        - 443
-  skip-domain:
-    - +.push.apple.com
-  skip-dst-address:
-    - 91.105.192.0/23
-    - 91.108.4.0/22
-    - 91.108.8.0/21
-    - 91.108.16.0/21
-    - 91.108.56.0/22
-    - 95.161.64.0/20
-    - 149.154.160.0/20
-    - 185.76.151.0/24
-    - 2001:67c:4e8::/48
-    - 2001:b28:f23c::/47
-    - 2001:b28:f23f::/48
-    - 2a0a:f280:203::/48
-
-#tun必须开启，否则将无法代理流量，如网页打开慢，电报卡连接中，
-#可以尝试更换堆栈，同一堆栈在不同设备上体验不同，自行尝试。
-#更换为非gvisor堆栈可能导致IPv6出现问题
-tun:
-  enable: true
-  device: Meta
-  stack: gvisor
-  auto-route: true
-  auto-redirect: false
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-  route-exclude-address: []
-  mtu: 1500
-#exclude-package内填写的包名，网络流量不经过tun，相当于黑名单
-#默认添加MIUI镜像服务以及三星电话服务，避免系统功能不可用
-#如果想仅代理指定应用，请将exclude-package改为include-package
-#然后填上想要走代理的包名，不要忘了英文冒号和缩进。
-#目前分流规则已足够完善，白名单可能存在问题，不建议使用
 
 dns:
   enable: true
